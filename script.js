@@ -1,7 +1,7 @@
 // Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Contact Form Handler with Formspree (AJAX)
+// Contact Form Handler with FormSubmit (AJAX)
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 const button = document.getElementById('submit-btn');
@@ -28,13 +28,8 @@ form.addEventListener('submit', async function(e) {
       status.textContent = 'Thank you! Your message has been sent.';
       form.reset();
     } else {
-      const result = await response.json();
       status.style.color = '#ff6b6b';
-      if (result.errors) {
-        status.textContent = result.errors.map(error => error.message).join(", ");
-      } else {
-        status.textContent = 'Oops! There was a problem submitting your form.';
-      }
+      status.textContent = 'Oops! There was a problem submitting your form. Please try again.';
     }
   } catch (error) {
     status.style.color = '#ff6b6b';
@@ -51,8 +46,8 @@ const navLinks = document.querySelectorAll('nav a');
 
 const observerOptions = {
   root: null,
-  threshold: 0.3,
-  rootMargin: '0px'
+  threshold: 0.5, // Trigger when 50% of the section is visible
+  rootMargin: '-10% 0px -10% 0px' 
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -71,4 +66,12 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(section => {
   observer.observe(section);
+});
+
+// Manual click override to ensure immediate highlighting
+navLinks.forEach(link => {
+  link.addEventListener('click', function() {
+    navLinks.forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
 });
