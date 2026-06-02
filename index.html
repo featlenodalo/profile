@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feat Lenodalo — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">Feat Lenodalo</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="hero">
+      <div>
+        <h2>Minimalist, modern front-end developer</h2>
+        <p>Design-forward responsive sites and web apps. I build accessible, performant interfaces.</p>
+        <div class="cta">
+          <a href="#projects" class="btn">See projects</a>
+          <a href="resume.pdf" class="btn ghost" download>Download Resume</a>
+        </div>
+      </div>
+      <div class="hero-image" aria-hidden="true"></div>
+    </section>
+
+    <section id="about" class="card">
+      <h3>About</h3>
+      <p>Hi — I’m Feat. I focus on clean UI, scalable CSS, and accessible interactions. Replace this with a short bio.</p>
+    </section>
+
+    <section id="skills" class="card">
+      <h3>Skills</h3>
+      <ul class="skills">
+        <li>HTML5</li>
+        <li>CSS3 / Flexbox / Grid</li>
+        <li>Vanilla JS</li>
+        <li>Responsive Design</li>
+        <li>Performance & Accessibility</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="card">
+      <h3>Projects</h3>
+      <div class="projects-grid" id="projects-list">
+        <!-- Project cards populated in script.js or replace with static cards -->
+        <article class="project">
+          <h4>Project One</h4>
+          <p>Short description. <a href="#" target="_blank" rel="noopener">View</a></p>
+        </article>
+        <article class="project">
+          <h4>Project Two</h4>
+          <p>Short description. <a href="#" target="_blank" rel="noopener">View</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="card">
+      <h3>Experience</h3>
+      <div class="timeline">
+        <div class="item">
+          <strong>Role — Company</strong>
+          <span class="muted">2023 — Present</span>
+          <p>Short responsibility/achievement bullet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>GitHub: <a href="https://github.com/featlenodalo" target="_blank" rel="noopener">github.com/featlenodalo</a></p>
+      <form id="contact-form">
+        <input name="name" placeholder="Name" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <textarea name="message" rows="4" placeholder="Message" required></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Feat Lenodalo — Built with HTML/CSS/JS</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
