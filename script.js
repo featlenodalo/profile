@@ -73,5 +73,20 @@ navLinks.forEach(link => {
   link.addEventListener('click', function() {
     navLinks.forEach(l => l.classList.remove('active'));
     this.classList.add('active');
+    
+    // Close mobile menu if open
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      menuToggle.classList.remove('active');
+    }
   });
+});
+
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('menu-toggle');
+const nav = document.getElementById('site-nav');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('active');
+  nav.classList.toggle('active');
 });
