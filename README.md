@@ -1,4 +1,4 @@
-# Feat Lenodalo — Portfolio
+# Featle Rose Nodalo — Portfolio
 
 Minimalist single-page portfolio (HTML/CSS/vanilla JS).
 
