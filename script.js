@@ -1,39 +1,19 @@
-// Small interactions: year, contact form, simple validation
+// Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Contact Form Handler
 document.getElementById('contact-form').addEventListener('submit', function(e){
   e.preventDefault();
   const fd = new FormData(e.target);
-  // For static sites: open mailto with contents
-  const subject = encodeURIComponent('Portfolio contact from ' + fd.get('name'));
-  const body = encodeURIComponent(`Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\n${fd.get('message')}`);
+  
+  // This approach opens the user's default email client with the message pre-filled.
+  // It is the most reliable way to handle contact forms on a static site without a server.
+  const subject = encodeURIComponent('Professional Inquiry from ' + fd.get('name'));
+  const body = encodeURIComponent(`Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\nMessage:\n${fd.get('message')}`);
+  
   window.location.href = `mailto:featlerose@gmail.com?subject=${subject}&body=${body}`;
+  
+  // Optional: Clear the form after submission
+  e.target.reset();
+  alert('Thank you! This will open your email application to send the message.');
 });
-
-// Fetch GitHub projects
-async function fetchGitHubProjects(username) {
-  const container = document.getElementById('projects-list');
-  try {
-    const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
-    if (!response.ok) throw new Error('Failed to fetch projects');
-    
-    const repos = await response.json();
-    container.innerHTML = ''; // Clear existing static projects or loading message
-
-    repos.filter(repo => !repo.fork).forEach(repo => {
-      const card = document.createElement('article');
-      card.className = 'project';
-      card.innerHTML = `
-        <h4>${repo.name}</h4>
-        <p>${repo.description || 'No description provided.'}</p>
-        <a href="${repo.html_url}" target="_blank" rel="noopener">View on GitHub</a>
-      `;
-      container.appendChild(card);
-    });
-  } catch (error) {
-    console.error('Error fetching GitHub projects:', error);
-    container.innerHTML = '<p>Unable to load projects at this time.</p>';
-  }
-}
-
-fetchGitHubProjects('featlenodalo');
