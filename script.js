@@ -1,19 +1,46 @@
 // Set current year in footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Contact Form Handler
-document.getElementById('contact-form').addEventListener('submit', function(e){
+// Contact Form Handler with Formspree (AJAX)
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
+const button = document.getElementById('submit-btn');
+
+form.addEventListener('submit', async function(e) {
   e.preventDefault();
-  const fd = new FormData(e.target);
+  button.disabled = true;
+  button.textContent = 'Sending...';
+  status.textContent = '';
+
+  const data = new FormData(e.target);
   
-  // This approach opens the user's default email client with the message pre-filled.
-  // It is the most reliable way to handle contact forms on a static site without a server.
-  const subject = encodeURIComponent('Professional Inquiry from ' + fd.get('name'));
-  const body = encodeURIComponent(`Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\nMessage:\n${fd.get('message')}`);
-  
-  window.location.href = `mailto:featlerose@gmail.com?subject=${subject}&body=${body}`;
-  
-  // Optional: Clear the form after submission
-  e.target.reset();
-  alert('Thank you! This will open your email application to send the message.');
+  try {
+    const response = await fetch(e.target.action, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      status.style.color = 'var(--accent)';
+      status.textContent = 'Thank you! Your message has been sent.';
+      form.reset();
+    } else {
+      const result = await response.json();
+      status.style.color = '#ff6b6b';
+      if (result.errors) {
+        status.textContent = result.errors.map(error => error.message).join(", ");
+      } else {
+        status.textContent = 'Oops! There was a problem submitting your form.';
+      }
+    }
+  } catch (error) {
+    status.style.color = '#ff6b6b';
+    status.textContent = 'Oops! There was a problem submitting your form.';
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Send Message';
+  }
 });

@@ -85,12 +85,13 @@
 
     <section id="contact" class="card">
       <h3>Contact</h3>
-      <p>Email: <a href="mailto:featlerose@gmail.com">featlerose@gmail.com</a></p>
-      <form id="contact-form">
+      <p>Feel free to reach out via the form below or email me directly at <a href="mailto:featlerose@gmail.com">featlerose@gmail.com</a>.</p>
+      <form id="contact-form" action="https://formspree.io/f/xyzklowv" method="POST">
         <input name="name" placeholder="Name" required />
         <input name="email" type="email" placeholder="Email" required />
         <textarea name="message" rows="4" placeholder="Message" required></textarea>
-        <button type="submit" class="btn">Send</button>
+        <button type="submit" class="btn" id="submit-btn">Send Message</button>
+        <p id="form-status" style="margin-top: 10px; font-size: 14px;"></p>
       </form>
     </section>
   </main>
