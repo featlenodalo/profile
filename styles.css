@@ -1,5 +1,5 @@
 :root{
-  --bg:#0f1115;--card:#0b0c0f;--muted:#9aa3b2;--accent:#7bd389;--text:#e6eef3;
+  --bg:#0f1115;--card:#0b0c0f;--muted:#9aa3b2;--accent:#ff7eb9;--text:#e6eef3;
   --radius:12px;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
@@ -23,7 +23,7 @@ nav a:hover{color:var(--text)}
 .project{background:#061018;padding:12px;border-radius:10px}
 .muted{color:var(--muted);display:block;font-size:13px}
 .site-footer{padding:20px 0;text-align:center;color:var(--muted);margin-top:28px}
-.btn{background:var(--accent);color:#022;border-radius:10px;padding:10px 14px;text-decoration:none;border:none;cursor:pointer}
+.btn{background:var(--accent);color:#1a050e;border-radius:10px;padding:10px 14px;text-decoration:none;border:none;cursor:pointer}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.06);color:var(--text)}
 input,textarea{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:none;background:#071018;color:var(--text)}
 @media (max-width:820px){
