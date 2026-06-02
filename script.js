@@ -44,3 +44,31 @@ form.addEventListener('submit', async function(e) {
     button.textContent = 'Send Message';
   }
 });
+
+// Intersection Observer for active nav highlighting
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
+
+const observerOptions = {
+  root: null,
+  threshold: 0.3,
+  rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const activeId = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${activeId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, observerOptions);
+
+sections.forEach(section => {
+  observer.observe(section);
+});
